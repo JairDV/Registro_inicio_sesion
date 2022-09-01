@@ -113,27 +113,6 @@ def inicio_sesion_empresa():
     Button(pantalla_empresa, text="Iniciar Sesión", bg="black", fg="white", font=("Arial", 11), height="1", width="11", command=validacion_datos_empresa).pack()
     Label(text="").pack()
 
-#ELEGIR REGISTRO.
-
-def elige():
-    global eligex
-    eligex=Toplevel(pantalla)
-    eligex.geometry("300x450")
-    eligex.title("Elige")
-    eligex.resizable(False,False)
-    eligex.iconbitmap("hub_de_seguridad.ico")
-
-    #Elige
-    Label(eligex, text="Elige", font=("Arial Black", 16), height="7").pack()
-
-    #Botón registro usuario
-    Button(eligex, text="Registrarme como usuario", bg="white", fg="black", font=("Arial", 11), height="1", width="25", command=pantalla_registro_usuario).pack()
-    Label(text="").pack()
-
-    #Botón registro empresa
-    Label(text="").pack()
-    Button(eligex, text="Registrarme como empresa", bg="black", fg="white", font=("Arial", 11), height="1", width="25", command=pantalla_registro_empresa).pack()
-
 def inicio_sesion_X(event=None):
     cerrar_only_pant_usuario()
     global pantalla_sesion
@@ -211,6 +190,27 @@ def inicio_sesion_empresa_X(event=None):
     
     Button(pantalla_empresa, text="Iniciar Sesión", bg="black", fg="white", font=("Arial", 11), height="1", width="11", command=validacion_datos_empresa).pack()
     Label(text="").pack()
+
+#ELEGIR REGISTRO.
+
+def elige():
+    global eligex
+    eligex=Toplevel(pantalla)
+    eligex.geometry("300x450")
+    eligex.title("Elige")
+    eligex.resizable(False,False)
+    eligex.iconbitmap("hub_de_seguridad.ico")
+
+    #Elige
+    Label(eligex, text="Elige", font=("Arial Black", 16), height="7").pack()
+
+    #Botón registro usuario
+    Button(eligex, text="Registrarme como usuario", bg="white", fg="black", font=("Arial", 11), height="1", width="25", command=pantalla_registro_usuario).pack()
+    Label(text="").pack()
+
+    #Botón registro empresa
+    Label(text="").pack()
+    Button(eligex, text="Registrarme como empresa", bg="black", fg="white", font=("Arial", 11), height="1", width="25", command=pantalla_registro_empresa).pack()
 
 #PANTALLAS REGISTRO.
     
@@ -572,7 +572,7 @@ def pantalla_mensaje_sesion():
     pant_inicio_sesion.iconbitmap("hub_de_seguridad.ico")
 
     #Bienvenido
-    Label(pant_inicio_sesion, text="Bienvenido, \n" + cadena, font=("Arial Black", 16), height="7").pack()
+    Label(pant_inicio_sesion, text="Bienvenid@, \n" + cadena, font=("Arial Black", 16), height="7").pack()
     
 def pantalla_mensaje_empresa():
     global pant_inicio_sesion_empresa
