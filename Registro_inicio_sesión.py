@@ -539,9 +539,6 @@ def pantalla_registro_empresa_X(event=None):
 def cerrar_elige():
     eligex.destroy()
 
-def cerrar_pantalla():
-    pantalla.destroy()
-
 def cerrar_pantalla_sesion():
     pantalla_sesion.destroy()
     
