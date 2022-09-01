@@ -37,7 +37,7 @@ def menu_pantalla():
 
 #PANTALLAS INICIO SESION.
     
-def inicio_sesion(event=None):
+def inicio_sesion():
     global pantalla_sesion
     pantalla_sesion = Toplevel(pantalla)
     pantalla_sesion.geometry("300x450")
@@ -69,13 +69,13 @@ def inicio_sesion(event=None):
     Label(pantalla_sesion, text="¿Aún no tienes cuenta?",font=("Arial",8)).place(x=60,y=300)
     vinculo=Label(pantalla_sesion, text="Regístrate",font=("Arial",8,"underline"))
     vinculo.place(x=190,y=300)
-    vinculo.bind("<Button-1>", pantalla_registro_usuario)
+    vinculo.bind("<Button-1>", pantalla_registro_usuario_X)
     Label(pantalla_sesion).pack()
     
     Button(pantalla_sesion, text="Iniciar Sesión", bg="black", fg="white", font=("Arial", 11), height="1", width="11", command=validacion_datos).pack()
     Label(text="").pack()    
 
-def inicio_sesion_empresa(event=None):
+def inicio_sesion_empresa():
     global pantalla_empresa
     pantalla_empresa = Toplevel(pantalla)
     pantalla_empresa.geometry("300x450")
@@ -107,7 +107,7 @@ def inicio_sesion_empresa(event=None):
     Label(pantalla_empresa, text="¿Aún no tienes cuenta?",font=("Arial",8)).place(x=60,y=300)
     vinculo=Label(pantalla_empresa, text="Regístrate",font=("Arial",8,"underline"))
     vinculo.place(x=190,y=300)
-    vinculo.bind("<Button-1>", pantalla_registro_empresa)
+    vinculo.bind("<Button-1>", pantalla_registro_empresa_X)
     Label(pantalla_empresa).pack()
     
     Button(pantalla_empresa, text="Iniciar Sesión", bg="black", fg="white", font=("Arial", 11), height="1", width="11", command=validacion_datos_empresa).pack()
@@ -134,9 +134,88 @@ def elige():
     Label(text="").pack()
     Button(eligex, text="Registrarme como empresa", bg="black", fg="white", font=("Arial", 11), height="1", width="25", command=pantalla_registro_empresa).pack()
 
+def inicio_sesion_X(event=None):
+    cerrar_only_pant_usuario()
+    global pantalla_sesion
+    pantalla_sesion = Toplevel(pantalla)
+    pantalla_sesion.geometry("300x450")
+    pantalla_sesion.title("Inicia sesión")
+    pantalla_sesion.resizable(False,False)
+    pantalla_sesion.iconbitmap("hub_de_seguridad.ico")
+    
+    global usuario_verificar
+    global contraseña_verificar
+
+    usuario_verificar=StringVar()
+    contraseña_verificar=StringVar()
+
+    #Inicia sesión
+    Label(pantalla_sesion, text="Inicia sesión", font=("Arial", 17), height="7").pack()
+
+    #Pedir Email
+    Label(pantalla_sesion, text="Email", font=("Arial",12)).pack()
+    usuario_entry = Entry(pantalla_sesion, textvariable=usuario_verificar)
+    usuario_entry.pack()
+    Label(pantalla_sesion).pack()
+
+    #Pedir contraseña
+    Label(pantalla_sesion, text="Contraseña",font=("Arial",12)).pack()
+    contraseña_entry= Entry(pantalla_sesion, textvariable=contraseña_verificar, show="*")
+    contraseña_entry.pack()
+    Label(pantalla_sesion).pack()
+
+    Label(pantalla_sesion, text="¿Aún no tienes cuenta?",font=("Arial",8)).place(x=60,y=300)
+    vinculo=Label(pantalla_sesion, text="Regístrate",font=("Arial",8,"underline"))
+    vinculo.place(x=190,y=300)
+    vinculo.bind("<Button-1>", pantalla_registro_usuario_X)
+    Label(pantalla_sesion).pack()
+    
+    Button(pantalla_sesion, text="Iniciar Sesión", bg="black", fg="white", font=("Arial", 11), height="1", width="11", command=validacion_datos).pack()
+    Label(text="").pack()    
+
+def inicio_sesion_empresa_X(event=None):
+    cerrar_only_pant_empresa()
+    global pantalla_empresa
+    pantalla_empresa = Toplevel(pantalla)
+    pantalla_empresa.geometry("300x450")
+    pantalla_empresa.title("Inicia sesión")
+    pantalla_empresa.resizable(False,False)
+    pantalla_empresa.iconbitmap("hub_de_seguridad.ico")
+    
+    global empresa_verificar
+    global contra_verificar
+
+    empresa_verificar=StringVar()
+    contra_verificar=StringVar()
+
+    #Inicia sesión
+    Label(pantalla_empresa, text="Inicia sesión empresa", font=("Arial", 17), height="7").pack()
+
+    #Pedir Email
+    Label(pantalla_empresa, text="Email", font=("Arial",12)).pack()
+    usuario_entry = Entry(pantalla_empresa, textvariable=empresa_verificar)
+    usuario_entry.pack()
+    Label(pantalla_empresa).pack()
+
+    #Pedir contraseña
+    Label(pantalla_empresa, text="Contraseña",font=("Arial",12)).pack()
+    contraseña_entry= Entry(pantalla_empresa, textvariable=contra_verificar, show="*")
+    contraseña_entry.pack()
+    Label(pantalla_empresa).pack()
+
+    Label(pantalla_empresa, text="¿Aún no tienes cuenta?",font=("Arial",8)).place(x=60,y=300)
+    vinculo=Label(pantalla_empresa, text="Regístrate",font=("Arial",8,"underline"))
+    vinculo.place(x=190,y=300)
+    vinculo.bind("<Button-1>", pantalla_registro_empresa_X)
+    Label(pantalla_empresa).pack()
+    
+    Button(pantalla_empresa, text="Iniciar Sesión", bg="black", fg="white", font=("Arial", 11), height="1", width="11", command=validacion_datos_empresa).pack()
+    Label(text="").pack()
+
 #PANTALLAS REGISTRO.
     
-def pantalla_registro_usuario(event=None):
+def pantalla_registro_usuario():
+    cerrar_elige()
     global pant_usuario
     pant_usuario = Toplevel(pantalla)
     pant_usuario.geometry("450x700")
@@ -201,13 +280,14 @@ def pantalla_registro_usuario(event=None):
     Label(pant_usuario, text="¿Ya tienes cuenta?",font=("Arial",8)).place(x=135,y=530)
     vinculo=Label(pant_usuario, text="Inicia Sesión",font=("Arial",8,"underline"))
     vinculo.place(x=250,y=530)
-    vinculo.bind("<Button-1>", inicio_sesion)
+    vinculo.bind("<Button-1>", inicio_sesion_X)
        
     boton_regresar = Button(pant_usuario, text="Regresar", bg="white", fg="black", height="2", width="11", font=("Arial", 10), command=cerrar_pant_usuario).place(x=130,y=560)
     
     boton_registrame = Button(pant_usuario, text="Regístrame", bg="black", fg="white", height="2", width="11", font=("Arial", 10), command=registrar_datos).place(x=250,y=560)
         
-def pantalla_registro_empresa(event=None):
+def pantalla_registro_empresa():
+    cerrar_elige()
     global pant_empresa
     pant_empresa = Toplevel(pantalla)
     pant_empresa.geometry("450x750")
@@ -288,12 +368,171 @@ def pantalla_registro_empresa(event=None):
     Label(pant_empresa, text="¿Ya tienes cuenta?",font=("Arial",8)).place(x=135,y=510)
     vinculo=Label(pant_empresa, text="Inicia Sesión",font=("Arial",8,"underline"))
     vinculo.place(x=250,y=510)
-    vinculo.bind("<Button-1>", inicio_sesion_empresa)
+    vinculo.bind("<Button-1>", inicio_sesion_empresa_X)
        
     boton_regresar = Button(pant_empresa, text="Regresar", bg="white", fg="black", height="2", width="11", font=("Arial", 10), command=cerrar_pant_empresa).place(x=130,y=540)
     
     boton_registrame = Button(pant_empresa, text="Regístrame", bg="black", fg="white", height="2", width="11", font=("Arial", 10), command=registrar_datos_empresa).place(x=250,y=540)
 
+def pantalla_registro_usuario_X(event=None):
+    cerrar_pantalla_sesion()
+    global pant_usuario
+    pant_usuario = Toplevel(pantalla)
+    pant_usuario.geometry("450x700")
+    pant_usuario.title("Registrate")
+    pant_usuario.resizable(False,False)
+    pant_usuario.iconbitmap("hub_de_seguridad.ico")
+
+    global nombre_usuario
+    global apellidos
+    global sexo
+    global telefono
+    global email
+    global contraseña
+
+    nombre_usuario=StringVar()
+    apellidos=StringVar()
+    sexo=StringVar()
+    telefono=StringVar()
+    email=StringVar()
+    contraseña=StringVar()
+    
+    #Registrate
+    Label(pant_usuario, text="Registrate", font=("Arial Black", 16), height="5").pack()
+
+    #Pedir Nombre
+    Label(pant_usuario, text="Nombre", font=("Arial",12)).pack()
+    nombre_usuario= Entry(pant_usuario, textvariable=nombre_usuario)
+    nombre_usuario.pack()
+    Label(pant_usuario).pack()
+
+    #Pedir Apellidos
+    Label(pant_usuario, text="Apellidos", font=("Arial",12)).pack()
+    apellidos= Entry(pant_usuario, textvariable=apellidos)
+    apellidos.pack()
+    Label(pant_usuario).pack()
+
+    #Pedir Género
+    Label(pant_usuario, text="Sexo", font=("Arial",12)).pack()
+    opciones=["Masculino","Femenino","Indistinto"]
+    sexo=Combobox(pant_usuario, width="17", values=opciones, state="readonly")
+    sexo.pack()
+    Label(pant_usuario).pack()
+
+    #Pedir Teléfono
+    Label(pant_usuario, text="Teléfono", font=("Arial",12)).pack()
+    telefono= Entry(pant_usuario, textvariable=telefono)
+    telefono.pack()
+    Label(pant_usuario).pack()
+
+    #Pedir Email
+    Label(pant_usuario, text="Email", font=("Arial",12)).pack()
+    email= Entry(pant_usuario, textvariable=email)
+    email.pack()
+    Label(pant_usuario).pack()
+
+    #Pedir Contraseña
+    Label(pant_usuario, text="Contraseña", font=("Arial",12)).pack()
+    contraseña= Entry(pant_usuario, textvariable=contraseña, show = "*")
+    contraseña.pack()
+    Label(pant_usuario).pack()
+
+    Label(pant_usuario, text="¿Ya tienes cuenta?",font=("Arial",8)).place(x=135,y=530)
+    vinculo=Label(pant_usuario, text="Inicia Sesión",font=("Arial",8,"underline"))
+    vinculo.place(x=250,y=530)
+    vinculo.bind("<Button-1>", inicio_sesion_X)
+       
+    boton_regresar = Button(pant_usuario, text="Regresar", bg="white", fg="black", height="2", width="11", font=("Arial", 10), command=cerrar_pant_usuario).place(x=130,y=560)
+    
+    boton_registrame = Button(pant_usuario, text="Regístrame", bg="black", fg="white", height="2", width="11", font=("Arial", 10), command=registrar_datos).place(x=250,y=560)
+        
+def pantalla_registro_empresa_X(event=None):
+    cerrar_pantalla_empresa()
+    global pant_empresa
+    pant_empresa = Toplevel(pantalla)
+    pant_empresa.geometry("450x750")
+    pant_empresa.title("Registrate")
+    pant_empresa.resizable(False,False)
+    pant_empresa.iconbitmap("hub_de_seguridad.ico")
+
+    global nombre
+    global apellidos
+    global razon_social
+    global RFC
+    global pais
+    global ciudad
+    global telefono
+    global email
+    global contraseña
+
+    nombre=StringVar()
+    apellidos=StringVar()
+    razon_social=StringVar()
+    RFC=StringVar()
+    pais=StringVar()
+    ciudad=StringVar()
+    telefono=StringVar()
+    email=StringVar()
+    contraseña=StringVar()
+    
+    #Registrate
+    Label(pant_empresa, text="Registra tu empresa", font=("Arial Black", 13), height="5").pack()
+
+    #Pedir Nombre
+    Label(pant_empresa, text="Nombre", font=("Arial",10)).pack()
+    nombre= Entry(pant_empresa, textvariable=nombre)
+    nombre.pack()
+
+    #Pedir Apellidos
+    Label(pant_empresa, text="Apellidos", font=("Arial",10)).pack()
+    apellidos= Entry(pant_empresa, textvariable=apellidos)
+    apellidos.pack()
+
+    #Pedir Razon Social
+    Label(pant_empresa, text="Razon_Social", font=("Arial",10)).pack()
+    razon_social= Entry(pant_empresa, textvariable=razon_social)
+    razon_social.pack()
+
+    #Pedir RFC
+    Label(pant_empresa, text="RFC", font=("Arial",10)).pack()
+    RFC = Entry(pant_empresa, textvariable=RFC)
+    RFC.pack()
+
+    #Pedir Pais
+    Label(pant_empresa, text="País", font=("Arial",10)).pack()
+    opciones=["México","Estados Unidos","Canadá"]
+    pais=Combobox(pant_empresa, width="17", values=opciones, state="readonly")
+    pais.pack()
+
+    #Pedir Ciudad
+    Label(pant_empresa, text="Ciudad", font=("Arial",10)).pack()
+    ciudad= Entry(pant_empresa, textvariable=ciudad)
+    ciudad.pack()
+    
+    #Pedir Teléfono
+    Label(pant_empresa, text="Teléfono", font=("Arial",10)).pack()
+    telefono= Entry(pant_empresa, textvariable=telefono)
+    telefono.pack()
+    
+    #Pedir Email
+    Label(pant_empresa, text="Email", font=("Arial",10)).pack()
+    email= Entry(pant_empresa, textvariable=email)
+    email.pack()
+
+    #Pedir Contraseña
+    Label(pant_empresa, text="Contraseña", font=("Arial",10)).pack()
+    contraseña= Entry(pant_empresa, textvariable=contraseña, show = "*")
+    contraseña.pack()
+    Label(pant_empresa).pack()
+
+    Label(pant_empresa, text="¿Ya tienes cuenta?",font=("Arial",8)).place(x=135,y=510)
+    vinculo=Label(pant_empresa, text="Inicia Sesión",font=("Arial",8,"underline"))
+    vinculo.place(x=250,y=510)
+    vinculo.bind("<Button-1>", inicio_sesion_empresa_X)
+       
+    boton_regresar = Button(pant_empresa, text="Regresar", bg="white", fg="black", height="2", width="11", font=("Arial", 10), command=cerrar_pant_empresa).place(x=130,y=540)
+    
+    boton_registrame = Button(pant_empresa, text="Regístrame", bg="black", fg="white", height="2", width="11", font=("Arial", 10), command=registrar_datos_empresa).place(x=250,y=540)
 
 #CERRAR PANTALLAS.
 
@@ -313,12 +552,12 @@ def cerrar_pant_empresa():
     pant_empresa.destroy()
     elige()
 
-def cerrar_only__pant_empresa():
-    pant_empresa.destroy()
-    
 def cerrar_pant_usuario():
     pant_usuario.destroy()
     elige()
+
+def cerrar_only_pant_empresa():
+    pant_empresa.destroy()
     
 def cerrar_only_pant_usuario():
     pant_usuario.destroy()
@@ -393,7 +632,7 @@ def registrar_datos_empresa():
             fcursor.execute(sql)
             bd.commit()
             messagebox.showinfo(message="Registro exitoso")
-            cerrar_only__pant_empresa()
+            cerrar_only_pant_empresa()
             cerrar_elige()
         except:
             bd.rollback
