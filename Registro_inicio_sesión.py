@@ -606,7 +606,6 @@ def registrar_datos():
             cerrar_elige()
         except:
             bd.rollback
-            messagebox.showinfo(message="No registrado", title="Aviso")
 
         bd.close()
 
@@ -633,7 +632,6 @@ def registrar_datos_empresa():
             cerrar_elige()
         except:
             bd.rollback
-            messagebox.showinfo(message="No registrado")
 
         bd.close()
 
